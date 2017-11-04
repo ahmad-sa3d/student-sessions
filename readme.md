@@ -7,46 +7,78 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
+## Student Web Service
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* Set env `APP_URL`, `APP_API_URL`
+* Web Service URL `/v1/sessions`
+* Web Service Inputs
+	- `start_date` __String__ date in format `d-m-Y`
+	- `days` __array__ of week days that student will attend from `0`  `saturday` to `6` `Friday`
+	- `chapter_days`__Integer__ number of days to finish one chapter
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+* Request Example:
 
-## Learning Laravel
+	```
+	{
+		"start_date": "07-11-2017",
+		"days": [ 1, 3, 5 ],
+		"chapter_days": 3
+	}
+	```
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+* Response Example:
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+	```
+	{
+	    "success": true,
+	    "data": {
+	        "number_of_chapters": 30,
+	        "sessions_per_chapter": 3,
+	        "sessions_per_week": 3,
+	        "first_session_date": "Tue 07-11-2017",
+	        "last_session_date": "Sun 03-06-2018",
+	        "sessions": [
+	            {
+	                "chapter": 1,
+	                "sessions": [
+	                    "Tue 07-11-2017",
+	                    "Thu 09-11-2017",
+	                    "Sun 12-11-2017"
+	                ]
+	            },
+	            {
+	                "chapter": 2,
+	                "sessions": [
+	                    "Tue 14-11-2017",
+	                    "Thu 16-11-2017",
+	                    "Sun 19-11-2017"
+	                ]
+	            },
+	            .
+	            .
+	            .
+	            .
+	            
+	            {
+	                "chapter": 30,
+	                "sessions": [
+	                    "Tue 29-05-2018",
+	                    "Thu 31-05-2018",
+	                    "Sun 03-06-2018"
+	                ]
+	            }
+	        ]
+	    },
+	    "message": "Successfully Retrieved"
+	}
 
-## Laravel Sponsors
+	```
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](http://patreon.com/taylorotwell):
+	
+### Postman Collection Link
+[Postman Collection](https://www.getpostman.com/collections/b2bc207ef016b6d46bad)
 
-- **[Vehikl](http://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Styde](https://styde.net)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
 
 ## License
 
