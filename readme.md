@@ -14,6 +14,10 @@
 * Web Service URL `/v1/sessions`
 * Web Service Inputs
 	- `start_date` __String__ date in format `d-m-Y`
+		
+		> __Note:__<br>
+		> if start date is today it will be skipped and first session will be the next day in days array
+		 
 	- `days` __array__ of week days that student will attend from `0`  `saturday` to `6` `Friday`
 	- `chapter_days`__Integer__ number of days to finish one chapter
 
